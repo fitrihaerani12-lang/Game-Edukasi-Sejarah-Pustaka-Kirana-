@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://d13gbk46f673"]
+
+[ext_resource type="Script" uid="uid://bc3dnq77vt4i5" path="res://scripts/MapScene.gd" id="1_mapgd"]
+[ext_resource type="Texture2D" uid="uid://bayjvffcug0y2" path="res://assets/images/background/bg_map_indonesia .png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://ciybmc0ie0bcx" path="res://assets/images/chars/char_kirana_map_guide.png" id="3_kirana"]
+[ext_resource type="FontFile" uid="uid://c46fop6nqybdi" path="res://assets/images/fonts/CrimsonText-Regular.ttf" id="4_font"]
+[ext_resource type="Shader" uid="uid://dvfedpcj3s6y5" path="res://shaders/map_glow.gdshader" id="5_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sumatra"]
+shader = ExtResource("5_shader")
+shader_parameter/glow_color = Color(1, 0.9, 0.5, 1)
+shader_parameter/speed = 2.0
+shader_parameter/intensity = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jogja"]
+shader = ExtResource("5_shader")
+shader_parameter/glow_color = Color(1, 0.941176, 0.470588, 1)
+shader_parameter/speed = 3.0
+shader_parameter/intensity = 0.9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialog"]
+bg_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_maluku"]
+shader = ExtResource("5_shader")
+shader_parameter/glow_color = Color(1, 0.9, 0.5, 1)
+shader_parameter/speed = 2.0
+shader_parameter/intensity = 0.6
+
+[node name="MapScene" type="Control" unique_id=277961542]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mapgd")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1261997402]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Glows" type="Control" parent="." unique_id=1368887325]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sumatra" type="ColorRect" parent="Glows" unique_id=928296457]
+material = SubResource("ShaderMaterial_sumatra")
+layout_mode = 0
+offset_left = 151.0
+offset_top = 223.0
+offset_right = 271.0
+offset_bottom = 343.0
+
+[node name="Jogja" type="ColorRect" parent="Glows" unique_id=951399572]
+material = SubResource("ShaderMaterial_jogja")
+layout_mode = 0
+offset_left = 417.0
+offset_top = 414.0
+offset_right = 537.0
+offset_bottom = 534.0
+
+[node name="Maluku" type="ColorRect" parent="Glows" unique_id=1071097706]
+material = SubResource("ShaderMaterial_maluku")
+layout_mode = 0
+offset_left = 865.0
+offset_top = 308.0
+offset_right = 985.0
+offset_bottom = 428.0
+
+[node name="DialogContainer" type="Control" parent="." unique_id=1531895071]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -155.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogPanel" type="Panel" parent="DialogContainer" unique_id=1171917467]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialog")
+
+[node name="DialogText" type="RichTextLabel" parent="DialogContainer/DialogPanel" unique_id=2047273538]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 324.0
+offset_top = 14.0
+offset_right = -30.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_font")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "Perjalanan kita dimulai..."
+
+
+
+[node name="Kirana" type="TextureRect" parent="." unique_id=1931632036]
+layout_mode = 1
+offset_left = -79.0
+offset_top = 399.0
+offset_right = 384.0
+offset_bottom = 824.0
+texture = ExtResource("3_kirana")
+expand_mode = 1
+stretch_mode = 5

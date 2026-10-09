@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://c0bni72ut50fq"]
+
+[ext_resource type="Script" uid="uid://bpmp2y1j8e0in" path="res://scripts/SumatraSequence.gd" id="1_sumatra"]
+[ext_resource type="Texture2D" uid="uid://dv5wfqgc4778t" path="res://assets/images/background/bg_library.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://ccqjnfv52p48j" path="res://assets/images/chars/char_kirana_materi.png" id="3_kirana"]
+[ext_resource type="FontFile" uid="uid://c46fop6nqybdi" path="res://assets/images/fonts/CrimsonText-Regular.ttf" id="4_font"]
+[ext_resource type="Texture2D" uid="uid://dh53usascaa22" path="res://assets/images/button/mulaitantangan.png" id="5_btn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialog"]
+bg_color = Color(0, 0, 0, 0.6)
+
+[node name="SumatraSequence" type="Control" unique_id=69257329]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sumatra")
+
+[node name="Background" type="TextureRect" parent="." unique_id=69675370]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=55026063]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand = true
+
+[node name="DialogContainer" type="Control" parent="." unique_id=1536953247]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -155.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogPanel" type="Panel" parent="DialogContainer" unique_id=1713383282]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialog")
+
+[node name="DialogText" type="RichTextLabel" parent="DialogContainer/DialogPanel" unique_id=1553682108]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 380.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_font")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "Contoh teks dialog..."
+
+[node name="MulaiTantanganBtn" type="TextureButton" parent="DialogContainer" unique_id=763256929]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -431.0
+offset_top = -133.0
+offset_right = -151.0
+offset_bottom = -58.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("5_btn")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Character" type="TextureRect" parent="." unique_id=556647728]
+layout_mode = 0
+offset_left = -140.0
+offset_top = 230.0
+offset_right = 425.0
+offset_bottom = 813.0
+texture = ExtResource("3_kirana")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="pressed" from="DialogContainer/MulaiTantanganBtn" to="." method="_on_mulai_tantangan_btn_pressed"]

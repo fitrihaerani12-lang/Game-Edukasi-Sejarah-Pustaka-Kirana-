@@ -1,0 +1,270 @@
+[gd_scene format=3 uid="uid://ctkojmigo3li6"]
+
+[ext_resource type="Script" uid="uid://dqctddwi4rfoo" path="res://scripts/GameComplete.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://r4bjb4uq03pp" path="res://shaders/magic_book.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://ccgwn3n88h3qo" path="res://assets/images/background/pase_akhir.png" id="3_bg"]
+[ext_resource type="PackedScene" uid="uid://cdrrjpxbbd1ia" path="res://scenes/char_kirana.tscn" id="4_kirana"]
+[ext_resource type="FontFile" uid="uid://c46fop6nqybdi" path="res://assets/images/fonts/CrimsonText-Regular.ttf" id="6_font_reg"]
+[ext_resource type="Texture2D" uid="uid://hqpeub6ksawr" path="res://assets/images/button/kembali.png" id="7_btn"]
+[ext_resource type="Texture2D" uid="uid://de3ppv6mrg6uh" path="res://assets/images/chars/char_kirana_map_excited.png" id="7_tiypx"]
+[ext_resource type="Texture2D" uid="uid://b3502wbmvqcaw" path="res://assets/images/icons/star_reward.png" id="9_star"]
+[ext_resource type="Texture2D" uid="uid://jhu04redpmgo" path="res://assets/images/button/kembali_kepeta.png" id="10_btn_map"]
+[ext_resource type="Texture2D" uid="uid://dtoa6sq3otsbn" path="res://assets/images/button/selesai.png" id="11_btn_selesai"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_book"]
+shader = ExtResource("2_shader")
+shader_parameter/time_speed = 2.0
+shader_parameter/glow_intensity = 0.5
+shader_parameter/book_center = Vector2(0.5, 0.65)
+shader_parameter/book_size = Vector2(0.4, 0.3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialog"]
+bg_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="Animation" id="Animation_book_pulse"]
+resource_name = "book_pulse"
+length = 2.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_intro"]
+_data = {
+&"book_pulse": SubResource("Animation_book_pulse")
+}
+
+[node name="GameComplete" type="Control" unique_id=877802270]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=665998873]
+material = SubResource("ShaderMaterial_book")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DialogContainer" type="Control" parent="." unique_id=1003889667]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -155.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogPanel" type="Panel" parent="DialogContainer" unique_id=1955800908]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialog")
+
+[node name="DialogText" type="RichTextLabel" parent="DialogContainer/DialogPanel" unique_id=1777846478]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 380.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_font_reg")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "Menyimpan sejarah..."
+
+[node name="StartButton" type="TextureButton" parent="DialogContainer" unique_id=1123673119]
+custom_minimum_size = Vector2(423, 75)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -391.0
+offset_top = -108.0
+offset_right = 32.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("7_btn")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Kirana" parent="." unique_id=242607896 instance=ExtResource("4_kirana")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -180.0
+offset_top = 200.0
+offset_right = 520.0
+offset_bottom = 900.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1317132329]
+libraries/ = SubResource("AnimationLibrary_intro")
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=2054862895]
+volume_db = -12.0
+autoplay = true
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="." unique_id=671693096]
+
+[node name="RewardContainer" type="Control" parent="." unique_id=231762490]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StarLeft" type="TextureRect" parent="RewardContainer" unique_id=954388657]
+layout_mode = 1
+offset_left = 384.0
+offset_top = 336.0
+offset_right = 634.0
+offset_bottom = 556.0
+pivot_offset = Vector2(40, 40)
+texture = ExtResource("9_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Particles" type="CPUParticles2D" parent="RewardContainer/StarLeft" unique_id=1137946964]
+position = Vector2(40, 40)
+emitting = false
+amount = 12
+lifetime = 0.8
+explosiveness = 0.2
+randomness = 0.5
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, -30)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color = Color(1, 0.9, 0.5, 0.85)
+
+[node name="StarCenter" type="TextureRect" parent="RewardContainer" unique_id=16762992]
+layout_mode = 1
+offset_left = 476.0
+offset_top = 234.0
+offset_right = 807.0
+offset_bottom = 488.0
+pivot_offset = Vector2(60, 60)
+texture = ExtResource("9_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Particles" type="CPUParticles2D" parent="RewardContainer/StarCenter" unique_id=3531251]
+position = Vector2(60, 60)
+emitting = false
+amount = 16
+lifetime = 0.8
+explosiveness = 0.2
+randomness = 0.5
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, -30)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color = Color(1, 0.9, 0.5, 0.85)
+
+[node name="StarRight" type="TextureRect" parent="RewardContainer" unique_id=342992647]
+layout_mode = 1
+offset_left = 652.0
+offset_top = 350.0
+offset_right = 886.0
+offset_bottom = 552.0
+pivot_offset = Vector2(40, 40)
+texture = ExtResource("9_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Particles" type="CPUParticles2D" parent="RewardContainer/StarRight" unique_id=1350855997]
+position = Vector2(40, 40)
+emitting = false
+amount = 12
+lifetime = 0.8
+explosiveness = 0.2
+randomness = 0.5
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, -30)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color = Color(1, 0.9, 0.5, 0.85)
+
+[node name="TitleLabel" type="Label" parent="RewardContainer" unique_id=1731284815]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 163.0
+offset_right = -4.0
+offset_bottom = 243.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_colors/font_outline_color = Color(0.2, 0.1, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("6_font_reg")
+theme_override_font_sizes/font_size = 48
+text = "Penjelajah Sejarah Nusantara"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnMap" type="TextureButton" parent="RewardContainer" unique_id=1842033989]
+layout_mode = 1
+offset_left = 256.0
+offset_top = 531.0
+offset_right = 694.0
+offset_bottom = 713.0
+pivot_offset = Vector2(140, 45)
+texture_normal = ExtResource("10_btn_map")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BtnSelesai" type="TextureButton" parent="RewardContainer" unique_id=588968186]
+layout_mode = 1
+offset_left = 563.0
+offset_top = 534.0
+offset_right = 1040.0
+offset_bottom = 713.0
+pivot_offset = Vector2(140, 45)
+texture_normal = ExtResource("11_btn_selesai")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CharKiranaMapExcited" type="Sprite2D" parent="." unique_id=1244563633]
+visible = false
+position = Vector2(179, 558.00006)
+scale = Vector2(0.43295372, 0.4108997)
+texture = ExtResource("7_tiypx")
+
+[connection signal="pressed" from="DialogContainer/StartButton" to="." method="_on_start_button_pressed"]

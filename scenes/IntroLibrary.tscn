@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://dlsyi288k53yq"]
+
+[ext_resource type="Script" uid="uid://rsevvlg5s6wa" path="res://scripts/IntroLibrary.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://r4bjb4uq03pp" path="res://shaders/magic_book.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://dv5wfqgc4778t" path="res://assets/images/background/bg_library.png" id="3_bg"]
+[ext_resource type="PackedScene" uid="uid://cdrrjpxbbd1ia" path="res://scenes/char_kirana.tscn" id="4_kirana"]
+[ext_resource type="FontFile" uid="uid://c46fop6nqybdi" path="res://assets/images/fonts/CrimsonText-Regular.ttf" id="6_font_reg"]
+[ext_resource type="Texture2D" uid="uid://b643f84en01is" path="res://assets/images/button/btn_mulai_petualangan.png" id="7_btn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_book"]
+shader = ExtResource("2_shader")
+shader_parameter/time_speed = 2.0
+shader_parameter/glow_intensity = 0.5
+shader_parameter/book_center = Vector2(0.5, 0.65)
+shader_parameter/book_size = Vector2(0.4, 0.3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialog"]
+bg_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="Animation" id="Animation_book_pulse"]
+resource_name = "book_pulse"
+length = 2.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_intro"]
+_data = {
+&"book_pulse": SubResource("Animation_book_pulse")
+}
+
+[node name="IntroLibrary" type="Control" unique_id=851211625]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=98971532]
+material = SubResource("ShaderMaterial_book")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DialogContainer" type="Control" parent="." unique_id=605308206]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -155.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogPanel" type="Panel" parent="DialogContainer" unique_id=190359822]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialog")
+
+[node name="DialogText" type="RichTextLabel" parent="DialogContainer/DialogPanel" unique_id=299775168]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 380.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_font_reg")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "Halo! Aku Kirana..."
+
+[node name="StartButton" type="TextureButton" parent="DialogContainer" unique_id=125288429]
+custom_minimum_size = Vector2(423, 75)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -449.0
+offset_top = -156.0
+offset_right = 117.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("7_btn")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Kirana" parent="." unique_id=259667919 instance=ExtResource("4_kirana")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -180.0
+offset_top = 200.0
+offset_right = 520.0
+offset_bottom = 900.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1137684801]
+libraries/ = SubResource("AnimationLibrary_intro")
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=285048582]
+volume_db = -15.0
+autoplay = true
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="." unique_id=1729704120]
+
+[node name="TextSFX" type="AudioStreamPlayer" parent="." unique_id=1766750253]
+pitch_scale = 1.5
+
+[connection signal="pressed" from="DialogContainer/StartButton" to="." method="_on_start_button_pressed"]

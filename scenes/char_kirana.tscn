@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cdrrjpxbbd1ia"]
+
+[ext_resource type="Shader" uid="uid://bl3jbeshos4sb" path="res://shaders/remove_white.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://dn4jo62unwnau" path="res://assets/images/chars/char_kirana.png" id="2_807w0"]
+[ext_resource type="Script" uid="uid://hjkl73th04qh" path="res://scripts/char_kirana.gd" id="3_script"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_char"]
+shader = ExtResource("1_shader")
+shader_parameter/similarity = 0.18
+shader_parameter/smoothness = 0.03
+shader_parameter/key_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 0.6)
+shader_parameter/shadow_offset = Vector2(12, 15)
+
+[node name="CharKirana" type="TextureRect" unique_id=863573925]
+material = SubResource("ShaderMaterial_char")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_807w0")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_script")

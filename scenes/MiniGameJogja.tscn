@@ -1,0 +1,273 @@
+[gd_scene format=3 uid="uid://dqeix8yvhwr7b"]
+
+[ext_resource type="Script" uid="uid://dfuyw1lohc8g0" path="res://scripts/MiniGameJogja.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cjwvnvq1fbh2f" path="res://assets/images/background/bg_mini_game.png" id="2_lr2l4"]
+[ext_resource type="Script" uid="uid://dfyahfhibyku6" path="res://scripts/DropSlot.gd" id="2_slot_script"]
+[ext_resource type="Texture2D" uid="uid://ciybmc0ie0bcx" path="res://assets/images/chars/char_kirana_map_guide.png" id="5_kirana_tex"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_slot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
+bg_color = Color(0, 0, 0, 0.75)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.65, 0.3, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 6
+shadow_offset = Vector2(2, 2)
+
+[node name="MiniGameJogja" type="Control" unique_id=1641271362]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1993022121]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lr2l4")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Campfire" type="TextureRect" parent="." unique_id=2044431209]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -220.0
+offset_right = 100.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CandleLeft" type="TextureRect" parent="." unique_id=411943538]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 250.0
+offset_top = -150.0
+offset_right = 330.0
+offset_bottom = -50.0
+grow_vertical = 0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CandleRight" type="TextureRect" parent="." unique_id=118762623]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -330.0
+offset_top = -150.0
+offset_right = -250.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SlotsContainer" type="Control" parent="." unique_id=2006566769]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = 20.0
+offset_right = 565.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot1" type="Panel" parent="SlotsContainer" unique_id=172023270]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 0
+offset_left = 256.0
+offset_top = 11.0
+offset_right = 406.0
+offset_bottom = 211.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_slot")
+script = ExtResource("2_slot_script")
+
+[node name="Display" type="TextureRect" parent="SlotsContainer/Slot1" unique_id=2121440894]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Slot2" type="Panel" parent="SlotsContainer" unique_id=1441389830]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 9.0
+offset_right = 573.0
+offset_bottom = 206.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_slot")
+script = ExtResource("2_slot_script")
+slot_index = 1
+
+[node name="Display" type="TextureRect" parent="SlotsContainer/Slot2" unique_id=361625390]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Slot3" type="Panel" parent="SlotsContainer" unique_id=1340099721]
+layout_mode = 0
+offset_left = 593.0
+offset_top = 10.0
+offset_right = 735.0
+offset_bottom = 206.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_slot")
+script = ExtResource("2_slot_script")
+slot_index = 2
+
+[node name="Display" type="TextureRect" parent="SlotsContainer/Slot3" unique_id=98386516]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Slot4" type="Panel" parent="SlotsContainer" unique_id=132293444]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 0
+offset_left = 751.0
+offset_top = 7.0
+offset_right = 901.0
+offset_bottom = 207.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_slot")
+script = ExtResource("2_slot_script")
+slot_index = 3
+
+[node name="Display" type="TextureRect" parent="SlotsContainer/Slot4" unique_id=1104031579]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CardsContainer" type="HBoxContainer" parent="." unique_id=2033321640]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 40.0
+offset_right = 500.0
+offset_bottom = 240.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BtnCheck" type="Button" parent="." unique_id=212399815]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -768.0
+offset_top = -98.0
+offset_right = -518.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="BtnReset" type="Button" parent="." unique_id=1474766553]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -429.0
+offset_top = -92.0
+offset_right = -307.0
+offset_bottom = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GuideKirana" type="TextureRect" parent="." unique_id=321656066]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -348.0
+offset_right = 328.0
+offset_bottom = 127.0
+grow_vertical = 0
+texture = ExtResource("5_kirana_tex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Popup" type="Panel" parent="GuideKirana" unique_id=1505260394]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 70.5
+offset_top = -250.0
+offset_right = 370.5
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_popup")
+
+[node name="Label" type="Label" parent="GuideKirana/Popup" unique_id=565267010]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 13.0
+offset_right = -20.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Susun kartu peristiwa dari yang paling awal terjadi!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://dfb12345"]
+
+[ext_resource type="Script" uid="uid://i8wj8vxwh5a4" path="res://scripts/LibraryScene.gd" id="1_libsc"]
+[ext_resource type="Texture2D" uid="uid://dv5wfqgc4778t" path="res://assets/images/background/bg_library.png" id="2_nw4xx"]
+[ext_resource type="PackedScene" uid="uid://cdrrjpxbbd1ia" path="res://scenes/char_kirana.tscn" id="4_kirana"]
+[ext_resource type="Texture2D" uid="uid://b643f84en01is" path="res://assets/images/button/btn_mulai_petualangan.png" id="5_t4nii"]
+
+[node name="LibraryScene" type="Control" unique_id=1287136384]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_libsc")
+
+[node name="Background" type="TextureRect" parent="." unique_id=462693552]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nw4xx")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DialogPanel" type="Panel" parent="." unique_id=1912826483]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = -160.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogText" type="RichTextLabel" parent="DialogPanel" unique_id=1282867199]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 340.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 28
+text = "Halo! Aku Kirana. Maukah kamu membantuku menyusun kembali sejarah nusantara yang hilang?"
+
+[node name="Character" parent="." unique_id=1251173232 instance=ExtResource("4_kirana")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -171.0
+offset_top = 158.0
+offset_right = 549.0
+offset_bottom = 878.0
+grow_horizontal = 1
+grow_vertical = 1
+expand_mode = 2
+
+[node name="TypewriterTimer" type="Timer" parent="." unique_id=1696495721]
+wait_time = 0.05

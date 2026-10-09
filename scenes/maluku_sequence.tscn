@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c81wkk1agmtev"]
+
+[ext_resource type="PackedScene" uid="uid://cygc4v8b0s8hp" path="res://scenes/MalukuSequence.tscn" id="1_by03l"]
+
+[node name="MalukuSequence" unique_id=815938725 instance=ExtResource("1_by03l")]
+
+[node name="MulaiTantanganBtn" parent="DialogContainer" parent_id_path=PackedInt32Array(1787476595) index="1" unique_id=20309131]
+offset_left = -423.0
+offset_top = -137.0
+offset_right = -143.0
+offset_bottom = -56.0
